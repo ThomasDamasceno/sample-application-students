@@ -12,6 +12,8 @@ jobs:
       jdk: oraclejdk11
       before_script:
         - cd sample-application-backend
+      script: 
+        -​ mvn clean verify org.jacoco:jacoco-maven-plugin:prepare-agent installsonar:sonar -Dsonar.projectKey=thomassample
     - stage: "Build and Test Nodejs"
       language: node.js
       node_js: "12.20"
@@ -36,3 +38,8 @@ cache:
   directories:
     - "$HOME/.m2/repository"
     - "$HOME/.npm"
+
+addons:
+  sonarcloud:
+    organization: "thomasdamasceno"
+    token: "$SONARCLOUD_TOKEN"
