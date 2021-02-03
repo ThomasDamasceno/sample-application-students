@@ -29,7 +29,7 @@ jobs:
         - cd sample-application-frontend
       script:
         - docker-compose build
-        - docker login -up $DOCKERUSR $DOCKERPWD
+        - docker login -u $DOCKERUSR -p $DOCKERPWD
         - docker-compose push 
 
 cache:
