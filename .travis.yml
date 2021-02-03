@@ -1,6 +1,10 @@
 git:
   depth: 5
 
+stages:
+  - "Build and Test"
+  - "Package"
+
 jobs:
   include:
     - stage: "Build and Test Java"
@@ -13,6 +17,20 @@ jobs:
       node_js: "12.20"
       before_script:
         - cd sample-application-frontend
+    - stage: "Package"
+      before_script:
+        - cd sample-application-backend
+      script:
+        - docker-compose build
+        - docker login -up $DOCKERUSR $DOCKERPWD
+        - docker-compose push 
+    - stage: "Package"
+      before_script:
+        - cd sample-application-frontend
+      script:
+        - docker-compose build
+        - docker login -up $DOCKERUSR $DOCKERPWD
+        - docker-compose push 
 
 cache:
   directories:
