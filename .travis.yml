@@ -21,16 +21,16 @@ jobs:
       before_script:
         - cd sample-application-backend
       script:
-        - docker build -t ${DOCKERUSR}/sample-application-backend .
+        - docker build -t thomasdama/sample-application-backend .
         - docker login -u $DOCKERUSR -p $DOCKERPWD
-        - docker push ${DOCKERUSR}/sample-application-backend
+        - docker push thomasdama/sample-application-backend
     - stage: "Package"
       before_script:
         - cd sample-application-frontend
       script:
-        - docker build -t ${DOCKERUSR}/sample-application-frontend .
+        - docker build -t thomasdama/sample-application-frontend .
         - docker login -u $DOCKERUSR -p $DOCKERPWD
-        - docker push ${DOCKERUSR}/sample-application-frontend
+        - docker push thomasdama/sample-application-frontend
 
 cache:
   directories:
