@@ -2,19 +2,21 @@ git:
   depth: 5
 
 stages:
-  - "Build and Test"
-  - "Package"
+  - name: "Build and Test"
+    if: branch = master
+  - name: "Package"
+    if: branch = master
 
 jobs:
   include:
-    - stage: "Build and Test Java"
+    - stage: "Build and Test"
       language: java
       jdk: oraclejdk11
       before_script:
         - cd sample-application-backend
       script: 
         - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=thomassample
-    - stage: "Build and Test Nodejs"
+    - stage: "Build and Test"
       language: node.js
       node_js: "12.20"
       before_script:
