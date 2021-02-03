@@ -23,14 +23,14 @@ jobs:
       script:
         - docker-compose build
         - docker login -u $DOCKERUSR -p $DOCKERPWD
-        - docker-compose push 
+        - docker push thomasdama/sample-application-backend:tagname 
     - stage: "Package"
       before_script:
         - cd sample-application-frontend
       script:
         - docker-compose build
         - docker login -u $DOCKERUSR -p $DOCKERPWD
-        - docker-compose push 
+        - docker push thomasdama/sample-application-frontend:tagname
 
 cache:
   directories:
